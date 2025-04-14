@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const morgan = require('morgan');
+//const morgan = require('morgan');
 const { Sequelize } = require('sequelize');
 const turnosRoutes = require('./routes/turnos');
 
@@ -8,7 +8,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware para logging
-app.use(morgan('dev'));
+//app.use(morgan('dev'));
 
 // Middleware para CORS y parsing JSON
 app.use(cors());
