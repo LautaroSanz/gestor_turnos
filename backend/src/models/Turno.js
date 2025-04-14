@@ -1,5 +1,5 @@
 const { DataTypes } = require('sequelize');
-const { sequelize } = require('../index');
+const  sequelize  = require('../config/database');
 
 const Turno = sequelize.define('Turno', {
   id: {
@@ -19,12 +19,18 @@ const Turno = sequelize.define('Turno', {
     type: DataTypes.TIME,
     allowNull: false
   },
-  servicio: {
+  medico: {
     type: DataTypes.STRING,
     allowNull: false
   },
+  
+  consultorio: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  
   estado: {
-    type: DataTypes.ENUM('pendiente', 'en_proceso', 'completado', 'cancelado'),
+    type: DataTypes.ENUM('libre','pendiente', 'en_proceso', 'completado', 'cancelado'),
     defaultValue: 'pendiente'
   },
   observaciones: {

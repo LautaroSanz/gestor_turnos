@@ -54,6 +54,7 @@ services:
       PORT: 3000
     ports:
       - "3000:3000"
+      - "9229:9229"  # Puerto para el depurador de Node.js
     volumes:
       - ./backend:/app
       - /app/node_modules

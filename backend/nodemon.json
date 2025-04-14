@@ -1,0 +1,13 @@
+{
+    "restartable": "rs",
+    "ignore": [".git", "node_modules", "logs"],
+    "verbose": true,
+    "execMap": {
+      "js": "node --inspect=0.0.0.0:9229"
+    },
+    "watch": ["src/**/*"],
+    "env": {
+      "NODE_ENV": "development"
+    },
+    "ext": "js,json"
+  }

@@ -8,15 +8,11 @@ CREATE TABLE IF NOT EXISTS turnos (
   nombre_cliente VARCHAR(255) NOT NULL,
   fecha DATE NOT NULL,
   hora TIME NOT NULL,
-  servicio VARCHAR(255) NOT NULL,
-  estado ENUM('pendiente', 'en_proceso', 'completado', 'cancelado') DEFAULT 'pendiente',
+  medico VARCHAR(255) NOT NULL,
+  consultorio VARCHAR(255) NOT NULL,
+  estado ENUM('libre','pendiente', 'en_proceso', 'completado', 'cancelado') DEFAULT 'pendiente',
   observaciones TEXT,
   createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
--- Insertar algunos datos de ejemplo
-INSERT INTO turnos (nombre_cliente, fecha, hora, servicio, estado, observaciones) VALUES
-('Juan Pérez', '2025-04-15', '09:00:00', 'Consulta médica', 'pendiente', 'Primera visita'),
-('María López', '2025-04-15', '09:30:00', 'Consulta médica', 'pendiente', 'Control mensual'),
-('Carlos Rodríguez', '2025-04-15', '10:00:00', 'Laboratorio', 'pendiente', 'Ayuno 8 horas');
