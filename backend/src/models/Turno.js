@@ -45,14 +45,4 @@ const Turno = sequelize.define('Turno', {
   timestamps: true
 });
 
-// Establecer relación con Doctor
-Turno.belongsTo(Doctor, { 
-  foreignKey: 'id_doctor',
-  as: 'doctor'
-});
-Doctor.hasMany(Turno, { 
-  foreignKey: 'id_doctor',
-  as: 'turnos'
-});
-
 module.exports = Turno;

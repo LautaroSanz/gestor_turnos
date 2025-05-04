@@ -18,7 +18,7 @@ exports.getTurnosByMedico = async (req, res) => {
     const { medico } = req.params;
     const turnos = await Turno.findAll({
       where: {
-        medico: medico
+        id_doctor: medico
       }
     });
     res.json(turnos);
@@ -34,7 +34,7 @@ exports.getTurnosLibresByMedico = async (req, res) => {
     const { medico } = req.params;
     const turnos = await Turno.findAll({
       where: {
-        medico: medico,
+        id_doctor: medico,
         estado: 'libre'
       }
     });
@@ -52,7 +52,7 @@ exports.getTurnosByFechaAndMedico = async (req, res) => {
     const turnos = await Turno.findAll({
       where: {
         fecha: fecha,
-        medico: medico
+        id_doctor: medico
       }
     });
     res.json(turnos);
@@ -157,7 +157,7 @@ exports.generarTurnos = async (req, res) => {
               nombre_cliente: '',
               fecha: fechaActual,
               hora: horaFormateada,
-              medico,
+              id_doctor: medico, // Cambiado de 'medico' a 'id_doctor'
               consultorio,
               estado: 'libre',
               observaciones: 'Turno generado automáticamente'
@@ -178,20 +178,20 @@ exports.generarTurnos = async (req, res) => {
         fecha: {
           [Op.in]: [...new Set(fechasTurnos)]
         },
-        medico
+        id_doctor: medico // Cambiado de 'medico' a 'id_doctor'
       }
     });
     
     // Crear un mapa de turnos existentes para búsqueda rápida
     const turnosExistentesMap = {};
     existentes.forEach(turno => {
-      const key = `${turno.fecha}_${turno.hora}_${turno.medico}`;
+      const key = `${turno.fecha}_${turno.hora}_${turno.id_doctor}`; // Cambiado de 'medico' a 'id_doctor'
       turnosExistentesMap[key] = true;
     });
     
     // Filtrar solo los turnos que no existen
     const turnosNuevos = turnosACrear.filter(turno => {
-      const key = `${turno.fecha}_${turno.hora}_${turno.medico}`;
+      const key = `${turno.fecha}_${turno.hora}_${turno.id_doctor}`; // Cambiado de 'medico' a 'id_doctor'
       return !turnosExistentesMap[key];
     });
     
@@ -222,7 +222,7 @@ exports.cancelarTurnosLibresPorFecha = async (req, res) => {
       { estado: 'cancelado' },
       {
         where: {
-          medico,
+          id_doctor: medico, // Cambiado de 'medico' a 'id_doctor'
           fecha,
           estado: 'libre'
         }

@@ -48,14 +48,6 @@ const Doctor = sequelize.define('Doctor', {
   timestamps: true
 });
 
-// Establecer relación con Especialidad
-Doctor.belongsTo(Especialidad, { 
-  foreignKey: 'id_especialidad', 
-  as: 'especialidad' 
-});
-Especialidad.hasMany(Doctor, { 
-  foreignKey: 'id_especialidad', 
-  as: 'doctores' 
-});
+
 
 module.exports = Doctor;

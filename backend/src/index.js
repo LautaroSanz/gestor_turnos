@@ -3,6 +3,7 @@ const cors = require('cors');
 //const morgan = require('morgan');
 const { Sequelize } = require('sequelize');
 const turnosRoutes = require('./routes/turnos');
+const medicoRoutes= require('./routes/medicos');
 const models = require('./models'); // Importa todos los modelos para que se sincronicen
 const app = express();
 const PORT = process.env.PORT || 3000;
